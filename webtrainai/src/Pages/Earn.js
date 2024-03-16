@@ -3,11 +3,10 @@ import { useState } from "react";
 
 const Earn = () => {
     const address = useAddress();
-    const [imageSrc, setImageSrc] = useState("https://source.unsplash.com/random");
+    const [imageSrc, setImageSrc] = useState("https://unsplash.com/photos/selective-photography-of-stop-signage-WPrTKRw8KRQhttps://th.bing.com/th/id/R.21657af2c52a35ba82131a2d8fb2c3eb?rik=%2b5Vje1Vg0JpkzA&riu=http%3a%2f%2fwww.aaeyes.net%2fwp-content%2fuploads%2f2018%2f08%2fAttachment-1.jpeg&ehk=W%2fKWcdaxxCi50XSlHE%2bmrRu9pdrchsuvuBigB7suxCc%3d&risl=&pid=ImgRaw&r=0");
 
     // Function to handle skip button click
     const handleSkip = () => {
-        setImageSrc("https://source.unsplash.com/random");
         console.log("HI");
     };
 
@@ -16,19 +15,16 @@ const Earn = () => {
     };
 
     return (
-        <div>
-            {address ? (
-                <div>
-                    <h1>Address: {address}</h1>
-                    <button onClick={handleSkip}>Skip</button>
-                    <input type="text" placeholder="What is the image above?" />
-                    <button onClick={handleSubmit}>Submit</button>
-                    <img src={imageSrc} alt="Image" />
-                </div>
-            ) : (
-                <h1>Connect Wallet</h1>
-            )}
-            <ConnectWallet />
+        <div className="p-4">
+
+        <h1 className="font-bold text-2xl"> Label data and earn 10 $TAT</h1>
+
+            <input className="border border-gray-300 rounded py-2 px-4 mt-4" type="text" placeholder="What is the image below?" />
+            <button className="ml-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" onClick={handleSubmit}>Submit</button>
+            <button className="ml-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleSkip}>Skip</button>
+
+            <img className="mt-3 object-cover" src={'PIC.jpg'} alt="Image" />
+
         </div>
     );
 };

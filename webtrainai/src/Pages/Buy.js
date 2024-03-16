@@ -97,12 +97,8 @@ const Buy = () => {
 
     return (
         <div >
-            <h1>Buy Page</h1>
-
-            <ConnectWallet/>
-
-            {address ? (
-
+            
+            <h1> Buy data training </h1>
 
             <form onSubmit={handleSubmit}>
                 <div>
@@ -115,11 +111,6 @@ const Buy = () => {
                 </div>
                 <button type="submit">Submit</button>
             </form>
-
-            ) : (
-
-                <h1>Connect Wallet</h1>
-            )}
 
         </div>
     );
