@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { db } from '../firebase';
 import { storage } from '../firebase';
 import { getStorage, ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
-import { useAddress } from '@thirdweb-dev/react';
+import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 const Buy = () => {
@@ -10,21 +10,26 @@ const Buy = () => {
     const address = useAddress();
 
     const [files, setFiles] = useState([]);
-    const [number, setNumber] = useState('');
+    const [labelAmount, setlabelAmount] = useState('');
 
     const handleFileChange = (event) => {
         const selectedFiles = Array.from(event.target.files);
         setFiles(selectedFiles);
     };
 
-    const handleNumberChange = (event) => {
+    const handlelabelAmountChange = (event) => {
         const selectedNumber = event.target.value;
-        setNumber(selectedNumber);
+        setlabelAmount(selectedNumber);
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-    
+        
+        if(files.length === 0 || labelAmount === '') {
+            alert('Please upload images and enter the number of times each image should be labeled.');
+            return;
+        }
+
         // Create a Firebase Storage reference
         const storage = getStorage();
         const storageRef = ref(storage);
@@ -49,11 +54,11 @@ const Buy = () => {
         }
 
         updateOwnedItems(1+numberOfItems, 1+numberOfItems+files.length)        
-
-        console.log('Number:', number);
+        updateActiveImages(1+numberOfItems, 1+numberOfItems+files.length)
+        console.log('Number:', labelAmount);
     };
 
-    const updateOwnedItems = async (min, max) => {
+    const updateOwnedItems = async (min, max) => { //tjhis updates the collection keeps track of wallet addys and what imageID they own
         const docRef = doc(db, "wallet", "0");
         const docSnap = await getDoc(docRef);
 
@@ -79,11 +84,25 @@ const Buy = () => {
             [`${address}`]: curData
         });
     }
-    
+
+    const updateActiveImages = async(min, max) => {
+        const docRef = doc(db, "activeImages", "0");
+
+        for (let i = min; i < max; i++) {
+            await updateDoc(docRef, {
+                [`${i}`]: Number(labelAmount)
+            });
+        }
+    }   
 
     return (
         <div>
             <h1>Buy Page</h1>
+            <ConnectWallet/>
+
+            {address ? (
+
+
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="fileInput">Upload Images:</label>
@@ -91,10 +110,16 @@ const Buy = () => {
                 </div>
                 <div>
                     <label htmlFor="numberInput">How many times should each image be labeled?</label>
-                    <input type="number" id="numberInput" value={number} onChange={handleNumberChange} />
+                    <input type="number" id="numberInput" value={labelAmount} onChange={handlelabelAmountChange} />
                 </div>
                 <button type="submit">Submit</button>
             </form>
+
+            ) : (
+
+                <h1>Connect Wallet</h1>
+            )}
+
         </div>
     );
 };

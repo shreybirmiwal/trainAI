@@ -1,3 +1,10 @@
+Firebase struct:
+
+wallet --> 0 --> 'wallet address' : ['owned image ID', 'owned image ID2']
+activeImages --> 0 --> imageID : amountOfReviewsLeft
+
+
+
 # CRA JavaScript Starter
 
 Starter kit to build with Create React App and thirdweb without additional initial configuration.
