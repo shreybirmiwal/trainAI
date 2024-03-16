@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
-import "./styles/globals.css";
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.

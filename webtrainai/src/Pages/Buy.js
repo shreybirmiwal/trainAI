@@ -96,8 +96,9 @@ const Buy = () => {
     }   
 
     return (
-        <div>
+        <div >
             <h1>Buy Page</h1>
+
             <ConnectWallet/>
 
             {address ? (
