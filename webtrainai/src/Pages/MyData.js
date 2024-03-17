@@ -91,12 +91,13 @@ function MyData() {
   }
 
   return (
-    <div>
+    <div className='overflow-y-scroll mt-5'>
       <table>
         <thead>
           <tr>
             <th>ID</th>
             <th>Picture</th>
+            <th>Labels</th>
           </tr>
         </thead>
         <tbody>
@@ -106,7 +107,7 @@ function MyData() {
               <td>{picID}</td>
 
               <td>
-                <img src={allPicPIC[index]} alt="pic" width={40} height={40} />
+                <img src={allPicPIC[index]} alt="pic" width={80} height={80} />
               </td>
 
               <td>{data[index]}</td>
