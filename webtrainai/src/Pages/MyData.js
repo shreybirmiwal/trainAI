@@ -12,10 +12,11 @@ function MyData() {
   const address = useAddress();
   const [allPicID, setID] = useState([]);  //the id, ei: 1, 2
   const [allPicPIC, setPIC] = useState([]); //the actual picture
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     getOwnedImages();
-    console.log(allPicID);
+    //console.log(allPicID);
 
   }, []);
 
@@ -26,15 +27,16 @@ function MyData() {
     var allIDs = []
     
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
+      //console.log("Document data:", docSnap.data());
 
       if(docSnap.data()[`${address}`] !== undefined) {
         allIDs = docSnap.data()[`${address}`]
         setID(docSnap.data()[`${address}`])
         getAllPics(allIDs)
+        getAllData(allIDs)
       }
     } else {
-      console.log("No such document!");
+      //console.log("No such document!");
     }
   }
 
@@ -43,7 +45,7 @@ function MyData() {
     const storage = getStorage();
     const storageRef = ref(storage);
     const listResult = await listAll(storageRef);
-    console.log(listResult)
+    //console.log(listResult)
 
     var temp = []
 
@@ -52,7 +54,7 @@ function MyData() {
       var fileRef;
       fileRef = ref(storageRef, `${id}.jpg`);      
       const url = await getDownloadURL(fileRef);
-      console.log(url);
+      //console.log(url);
       temp.push(url);
     }
 
@@ -60,16 +62,59 @@ function MyData() {
     
   }
 
+  const getAllData = async (allIDs) => {
+    var temp = []
+
+    for(const id of allIDs) {
+      const docRef = doc(db, "data", `${id}`);
+      const docSnap = await getDoc(docRef);
+  
+      if (docSnap.exists()) {
+
+        //console.log("CUR DUMP! data:", docSnap.data());
+        //const justValues = Object.values(docSnap.data())
+        //temp.push(docSnap.data());
+
+        const dataString = "" + JSON.stringify(docSnap.data());
+        temp.push(dataString)
+
+      } else {
+        temp.push(-1) //ERRORR NO SUCH DOC 
+        //console.log("No such document!");
+      }
+  
+    }
+    console.log("TEMP AR" + temp)
+
+    setData(temp);
+
+  }
+
   return (
     <div>
-      {allPicID.map((picID) => (
-        <p key={picID}>{picID}</p>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Picture</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allPicID.map((picID, index) => (
+            <tr key={picID}>
 
-      {allPicPIC.map((picPIC) => (
-        <img key={picPIC} src={picPIC} alt="pic" width={40} height={40} />
-      ))}
+              <td>{picID}</td>
 
+              <td>
+                <img src={allPicPIC[index]} alt="pic" width={40} height={40} />
+              </td>
+
+              <td>{data[index]}</td>
+
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
