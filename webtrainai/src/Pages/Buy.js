@@ -3,7 +3,7 @@ import { db } from '../firebase';
 import { storage } from '../firebase';
 import { getStorage, ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
 import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { addDoc, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 
 const Buy = () => {
 
@@ -80,18 +80,20 @@ const Buy = () => {
             curData.push(i);
         }
         
-        await updateDoc(docRef, {
+        await setDoc(docRef, {
             [`${address}`]: curData
         });
     }
 
     const updateActiveImages = async(min, max) => {
+
         const docRef = doc(db, "activeImages", "0");
 
         for (let i = min; i < max; i++) {
-            await updateDoc(docRef, {
+            await setDoc(docRef, {
                 [`${i}`]: Number(labelAmount)
-            });
+            },{merge: true}
+            );
         }
     }   
 
