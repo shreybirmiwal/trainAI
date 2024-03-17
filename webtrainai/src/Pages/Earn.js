@@ -18,7 +18,7 @@ const Earn = () => {
         
         <div className="p-4">
 
-        <h1 className="font-bold text-2xl"> Label data and earn 10 $TAT</h1>
+        <h1 className="font-bold text-2xl"> Label data and earn $TAT</h1>
 
             <input className="border border-gray-300 rounded py-2 px-4 mt-4" type="text" placeholder="What is the image below?" />
             <button className="ml-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" onClick={handleSubmit}>Submit</button>

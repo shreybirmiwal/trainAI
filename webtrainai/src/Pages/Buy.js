@@ -98,13 +98,16 @@ const Buy = () => {
     return (
         <div className='p-4'>
             
-            <h1 className='font-bold text-2xl'> Buy data training </h1>
+            <h1 className='font-bold text-2xl'> Buy data labeling </h1>
 
             <div className='flex flex-col'>
                 <input type="file" id="fileInput" onChange={handleFileChange} accept="image/*" multiple className='mt-5'/>
                 <input type="number" id="numberInput" value={labelAmount} onChange={handlelabelAmountChange} className='mt-5 w-96 py-2 px-4 bg-gray-100' placeholder='How many runs do you want per image?' />
                 <button type="submit" onClick={handleSubmit} className=' bg-blue-500 hover:bg-blue-700 text-white w-96 font-bold py-2 px-4 rounded mt-4'>Submit</button>
 
+                <p className='mt-4'> Cost: {labelAmount * files.length} $TAT (#pictures * #runs)</p>
+
+                
             </div>
 
 
