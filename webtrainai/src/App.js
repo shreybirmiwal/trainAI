@@ -21,13 +21,13 @@ export default function Home() {
       {address &&(
         <div className="flex flex-row">
 
-          <div className="w-1/2">
+          <div className="w-1/2 flex justify-center "> 
             <Earn/>
           </div>
 
-          <div className="w-1 bg-black"></div> {/* Add this line */}
+          <div className="w-1 h-screen bg-black"></div> 
           
-          <div className="w-1/2">
+          <div className="w-1/2 flex justify-center">
             <Buy />
           </div>
 

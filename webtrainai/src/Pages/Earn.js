@@ -15,6 +15,7 @@ const Earn = () => {
     };
 
     return (
+        
         <div className="p-4">
 
         <h1 className="font-bold text-2xl"> Label data and earn 10 $TAT</h1>
@@ -22,8 +23,11 @@ const Earn = () => {
             <input className="border border-gray-300 rounded py-2 px-4 mt-4" type="text" placeholder="What is the image below?" />
             <button className="ml-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" onClick={handleSubmit}>Submit</button>
             <button className="ml-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleSkip}>Skip</button>
+            
 
-            <img className="mt-3 object-cover" src={'PIC.jpg'} alt="Image" />
+            <div className="bg-blue-500 w-96 h-96">
+                <img className="object-scale-down mt-3" src={'PIC.jpg'} alt="Image" />
+            </div>
 
         </div>
     );
