@@ -45,13 +45,18 @@ function MyData() {
     const listResult = await listAll(storageRef);
     console.log(listResult)
 
+    var temp = []
+
     for (const id of allIDs) {
 
       var fileRef;
       fileRef = ref(storageRef, `${id}.jpg`);      
       const url = await getDownloadURL(fileRef);
       console.log(url);
-    }    
+      temp.push(url);
+    }
+
+    setPIC(temp);
     
   }
 
@@ -60,6 +65,11 @@ function MyData() {
       {allPicID.map((picID) => (
         <p key={picID}>{picID}</p>
       ))}
+
+      {allPicPIC.map((picPIC) => (
+        <img key={picPIC} src={picPIC} alt="pic" width={40} height={40} />
+      ))}
+
     </div>
   );
 }
