@@ -4,10 +4,16 @@ import { storage } from '../firebase';
 import { getStorage, ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
 import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
 import { addDoc, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { useContractWrite, useContractRead, useContract } from "@thirdweb-dev/react";
 
 
 const Buy = () => {
 
+    const { contract, isLoading, error } = useContract("0x10bC696e1B1b7b186E9d550091B5ED25ab6f9609");
+    const { mutate: callContractFunction } = useContractWrite(
+      contract,
+      "payForDataLabel"
+    );
 
     const address = useAddress();
 
@@ -35,7 +41,9 @@ const Buy = () => {
 
         //MAKE USER PAY!!
         var cost = labelAmount * files.length
+        const result = await callContractFunction({ args: [cost] });
 
+        console.log("RESSSULTT " + result)
 
 
         // Create a Firebase Storage reference
@@ -45,7 +53,7 @@ const Buy = () => {
         // Get the number of items in the storage reference
         const listResult = await listAll(storageRef);
         const numberOfItems = listResult.items.length;
-        console.log('Number of items:', numberOfItems);
+        //console.log('Number of items:', numberOfItems);
     
         // Upload each file and change its name
         for (let i = 0; i < files.length; i++) {
@@ -58,12 +66,12 @@ const Buy = () => {
     
             // Get the download URL of the uploaded file
             const downloadURL = await getDownloadURL(fileRef);
-            console.log(`Uploaded file ${i + 1}: ${downloadURL}`);
+            //console.log(`Uploaded file ${i + 1}: ${downloadURL}`);
         }
 
         updateOwnedItems(1+numberOfItems, 1+numberOfItems+files.length)        
         updateActiveImages(1+numberOfItems, 1+numberOfItems+files.length)
-        console.log('Number:', labelAmount);
+        //console.log('Number:', labelAmount);
     };
 
     const updateOwnedItems = async (min, max) => { //tjhis updates the collection keeps track of wallet addys and what imageID they own
@@ -73,11 +81,11 @@ const Buy = () => {
         var curData = []
 
         if (docSnap.exists()) {
-          console.log("Document data:", docSnap.data());
+          //console.log("Document data:", docSnap.data());
 
           if(docSnap.data()[`${address}`] !== undefined) {
             curData = docSnap.data()[`${address}`]
-            console.log("AHS data:", curData)
+            //console.log("AHS data:", curData)
           }
 
         } else {
