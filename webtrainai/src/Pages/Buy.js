@@ -5,7 +5,9 @@ import { getStorage, ref, uploadBytes, getDownloadURL, listAll } from 'firebase/
 import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
 import { addDoc, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 
+
 const Buy = () => {
+
 
     const address = useAddress();
 
@@ -29,6 +31,12 @@ const Buy = () => {
             alert('Please upload images and enter the number of times each image should be labeled.');
             return;
         }
+
+
+        //MAKE USER PAY!!
+        var cost = labelAmount * files.length
+
+
 
         // Create a Firebase Storage reference
         const storage = getStorage();
