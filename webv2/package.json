@@ -8,20 +8,22 @@
     "@testing-library/user-event": "^13.5.0",
     "@thirdweb-dev/react": "^4.9.4",
     "@thirdweb-dev/sdk": "^4.0.99",
+    "assert": "^2.0.0",
+    "browserify-zlib": "latest",
     "ethers": "^5.7.2",
+    "firebase": "^10.12.4",
+    "http": "npm:http-browserify",
+    "http-browserify": "latest",
+    "https": "npm:https-browserify",
+    "https-browserify": "latest",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
+    "stream": "^0.0.2",
+    "thirdweb": "^5.39.0",
     "url": "latest",
-    "http": "npm:http-browserify",
-    "https": "npm:https-browserify",
-    "zlib": "npm:browserify-zlib",
-    "http-browserify": "latest",
-    "https-browserify": "latest",
-    "browserify-zlib": "latest",
-    "assert": "^2.0.0",
-    "stream": "^0.0.2"
+    "web-vitals": "^2.1.4",
+    "zlib": "npm:browserify-zlib"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.7"
   }
 }
