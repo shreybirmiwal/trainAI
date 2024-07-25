@@ -7,7 +7,7 @@ import { useAddress } from "@thirdweb-dev/react";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import { useState } from "react";
 
-export default function Home() {
+export default function App() {
 
   const address = useAddress();
   const [navBar, setNavBar] = useState("Earn");

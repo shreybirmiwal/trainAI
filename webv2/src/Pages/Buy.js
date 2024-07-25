@@ -4,10 +4,13 @@ import { storage } from '../firebase';
 import { getStorage, ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
 import { addDoc, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { useAddress, ConnectWallet } from "@thirdweb-dev/react";
-
+import { prepareContractCall } from "thirdweb"
+import { useSendTransaction } from "thirdweb/react";
 
 const Buy = () => {
     const address = useAddress();
+    const { mutate: sendTransaction } = useSendTransaction();
+    const contract = "0x0B0e375C3eacd827FcC1ACaf9DC245cC66d906e1"
 
 
     const [files, setFiles] = useState([]);
@@ -34,7 +37,14 @@ const Buy = () => {
 
 
         //MAKE USER PAY!!
-        var cost = labelAmount * files.length
+        var amount = labelAmount * files.length
+        var to = "0x5af59F54065364c9CB99f137D8190edE6d59cA78" //treasurey
+        const transaction = prepareContractCall({
+            contract,
+            method: "function transfer(address to, uint256 amount) returns (bool)",
+            params: [to, amount]
+        });
+        sendTransaction(transaction);
 
 
 
