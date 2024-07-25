@@ -1,25 +1,22 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 import { ThirdwebProvider } from "@thirdweb-dev/react";
-import "./index.css";
 import { BaseSepoliaTestnet } from "@thirdweb-dev/chains";
 
-// This is the chain your dApp will work on.
-// Change this to the chain your app is built for.
-// You can also import additional chains from `@thirdweb-dev/chains` and pass them directly.
-
-const container = document.getElementById("root");
-const root = createRoot(container);
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
   <React.StrictMode>
     <ThirdwebProvider
       activeChain={BaseSepoliaTestnet}
-      clientId={process.env.REACT_APP_TEMPLATE_CLIENT_ID}
+      clientId={process.env.client_id}
     >
       <App />
     </ThirdwebProvider>
+
   </React.StrictMode>
 );
 
@@ -27,3 +24,6 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+
