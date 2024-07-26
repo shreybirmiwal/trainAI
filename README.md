@@ -2,6 +2,10 @@
 
 TrainAiToken is a cryptocurrency and website that enables distributed and decentralized AI data labeling with crypto incentives. As a company needing labeled data, your company can pay tokens and upload picture data. As a person trying to make money, you can label data and earn tokens.
 
+## Video Demo (Click to watch)
+[![Trailer](https://github.com/user-attachments/assets/717f9686-78e1-4c9e-84ec-575a6db7996a)](https://youtu.be/8BLInsdv9VU)
+
+
 ## Key features
 
 - Label data in simple UI and earn tokens
@@ -20,7 +24,7 @@ Base Sepolia
 
 ## Contract (Base Sepolia)
 
-[0x0B0e375C3eacd827FcC1ACaf9DC245cC66d906e1](https://sepolia.basescan.org/address/0x0B0e375C3eacd827FcC1ACaf9DC245cC66d906e1)
+[0x9B959594a82eaAC795ec17A3EEe43D94fE7aC23d](https://sepolia.basescan.org/address/0x9B959594a82eaAC795ec17A3EEe43D94fE7aC23d)
 
 
 
