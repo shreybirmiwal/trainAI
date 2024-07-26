@@ -11,6 +11,7 @@ TrainAiToken is a cryptocurrency and website that enables distributed and decent
 - Label data in simple UI and earn tokens
 - Get your data labeled by paying tokens
 - ERC-20 Contract $TAT TrainAiToken
+- ** Please note, the auto-earn is currently not fully working. It requires manual contract sending. You can see this in the video
 
 ## Stack
 
