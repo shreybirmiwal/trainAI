@@ -49,9 +49,11 @@ const Earn = () => {
 
         console.log(userClassification)
 
-
+        console.log("SENDING FUNDS TO USER!")
         //give reward
         await rewardUser(address, 1);
+
+        console.log("SENT FUNDS TO USER!")
 
         //update the activeImages
         updateActiveImages()
