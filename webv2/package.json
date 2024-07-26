@@ -1,37 +1,35 @@
 {
-  "name": "webtrainai",
-  "homepage": ".",
+  "name": "webv2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
+    "@testing-library/user-event": "^13.5.0",
     "@thirdweb-dev/react": "^4.9.4",
-    "@thirdweb-dev/sdk": "^4",
+    "@thirdweb-dev/sdk": "^4.0.99",
     "assert": "^2.0.0",
     "browserify-zlib": "latest",
-    "ethers": "^5",
-    "firebase": "^10.9.0",
+    "ethers": "^5.7.2",
+    "firebase": "^10.12.4",
     "http": "npm:http-browserify",
     "http-browserify": "latest",
     "https": "npm:https-browserify",
     "https-browserify": "latest",
-    "react": "^18.2",
-    "react-dom": "^18.2",
-    "react-scripts": "^5.0.1",
-    "react-toastify": "^10.0.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1",
     "stream": "^0.0.2",
+    "thirdweb": "^5.39.0",
     "url": "latest",
-    "web-vitals": "^3.1.0",
+    "web-vitals": "^2.1.4",
     "zlib": "npm:browserify-zlib"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "yarn build && npx thirdweb@latest upload build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +50,6 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.7"
   }
 }

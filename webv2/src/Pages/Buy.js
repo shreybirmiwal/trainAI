@@ -2,19 +2,16 @@ import React, { useState } from 'react';
 import { db } from '../firebase';
 import { storage } from '../firebase';
 import { getStorage, ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
-import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
 import { addDoc, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
-import { useContractWrite, useContractRead, useContract } from "@thirdweb-dev/react";
+import { useAddress, ConnectWallet } from "@thirdweb-dev/react";
 import { prepareContractCall } from "thirdweb"
 import { useSendTransaction } from "thirdweb/react";
 
 const Buy = () => {
-
-    const { mutate: sendTransaction } = useSendTransaction();
     const address = useAddress();
+    const { mutate: sendTransaction } = useSendTransaction();
+    const contract = "0x0B0e375C3eacd827FcC1ACaf9DC245cC66d906e1"
 
-    const contract = useContract("0x0B0e375C3eacd827FcC1ACaf9DC245cC66d906e1")
-    const treasury = "0x5af59F54065364c9CB99f137D8190edE6d59cA78"
 
     const [files, setFiles] = useState([]);
     const [labelAmount, setlabelAmount] = useState('');
@@ -29,14 +26,6 @@ const Buy = () => {
         setlabelAmount(selectedNumber);
     };
 
-    const onPayClick = (to, amount) => {
-        const transaction = prepareContractCall({
-            contract,
-            method: "function transfer(address to, uint256 amount) returns (bool)",
-            params: [to, amount]
-        });
-        sendTransaction(transaction);
-    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -48,12 +37,15 @@ const Buy = () => {
 
 
         //MAKE USER PAY!!
-        var cost = labelAmount * files.length
-        // const result = await callContractFunction({ args: [cost] });
-        onPayClick({ args: [treasury, cost] });
+        var amount = labelAmount * files.length
+        var to = "0x5af59F54065364c9CB99f137D8190edE6d59cA78" //treasurey
+        const transaction = prepareContractCall({
+            contract,
+            method: "function transfer(address to, uint256 amount) returns (bool)",
+            params: [to, amount]
+        });
+        sendTransaction(transaction);
 
-
-        // console.log("RESSSULTT " + result)
 
 
         // Create a Firebase Storage reference
@@ -90,9 +82,9 @@ const Buy = () => {
 
         var curData = []
 
+
         if (docSnap.exists()) {
             //console.log("Document data:", docSnap.data());
-
             if (docSnap.data()[`${address}`] !== undefined) {
                 curData = docSnap.data()[`${address}`]
                 //console.log("AHS data:", curData)
