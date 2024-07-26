@@ -3,16 +3,16 @@ import MyToken from "./contract/abi.json";
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
-const contractAddress = "0x85066324CD3bAABEaA26CfF6957215eBC9fd75bD";
+const contractAddress = "0x9B959594a82eaAC795ec17A3EEe43D94fE7aC23d";
 const contract = new ethers.Contract(contractAddress, MyToken.abi, signer);
 
-export const rewardUser = async (userAddress, amount) => {
+export const mintTokens = async (userAddress, amount) => {
     try {
-        const tx = await contract.reward(userAddress, ethers.utils.parseUnits(amount.toString(), 18));
+        const tx = await contract.mint(userAddress, ethers.utils.parseUnits(amount.toString(), 18));
         await tx.wait();
-        console.log(`Rewarded ${amount} tokens to ${userAddress}`);
+        console.log(`Minted ${amount} tokens to ${userAddress}`);
     } catch (error) {
-        console.error("Error rewarding user:", error);
+        console.error("Error minting tokens:", error);
     }
 };
 

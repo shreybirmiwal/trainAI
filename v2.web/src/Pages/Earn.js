@@ -6,7 +6,7 @@ import { db } from "../firebase";
 import { deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { increment } from "firebase/firestore";
 import { get } from "http";
-import { rewardUser } from "../TokenService";
+import { mintTokens, rewardUser } from "../TokenService";
 
 const Earn = () => {
     const address = useAddress();
@@ -47,11 +47,11 @@ const Earn = () => {
             return;
         }
 
-        console.log(userClassification)
+        console.log("CLASS " + userClassification)
 
         console.log("SENDING FUNDS TO USER!")
         //give reward
-        await rewardUser(address, 1);
+        await mintTokens(address, 1);
 
         console.log("SENT FUNDS TO USER!")
 
