@@ -2,6 +2,8 @@
 
 TrainAiToken is a cryptocurrency and website that enables distributed and decentralized AI data labeling with crypto incentives. As a company needing labeled data, your company can pay tokens and upload picture data. As a person trying to make money, you can label data and earn tokens.
 
+[Pitch Deck](https://docs.google.com/presentation/d/1HHD-WIA15VIgHNTHKpZvRAYlSvtF91WeFXMLKBvHV-Y/edit?usp=sharing)
+
 ## Video Demo (Click to watch)
 [![Trailer](https://github.com/user-attachments/assets/717f9686-78e1-4c9e-84ec-575a6db7996a)](https://youtu.be/8BLInsdv9VU)
 
